@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Campus Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= LOGIN PAGE ================= -->
+
+    <section class="login-page" id="loginPage">
+
+        <div class="login-container">
+
+            <div class="login-brand">
+                <div class="logo-icon">🎓</div>
+
+                <h1>Smart<span>Campus</span></h1>
+
+                <p>
+                    Smart management for a smarter campus.
+                </p>
+            </div>
+
+            <form id="loginForm">
+
+                <h2>Welcome Back</h2>
+
+                <p class="login-subtitle">
+                    Login to access your campus dashboard
+                </p>
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="student@campus.com"
+                    required
+                >
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter password"
+                    required
+                >
+
+                <label>Login As</label>
+
+                <select id="loginRole">
+
+                    <option value="student">
+                        Student
+                    </option>
+
+                    <option value="faculty">
+                        Faculty
+                    </option>
+
+                    <option value="admin">
+                        Administrator
+                    </option>
+
+                </select>
+
+                <button type="submit" class="login-btn">
+                    Login →
+                </button>
+
+                <p class="demo-text">
+                    Demo: enter any email and password
+                </p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN APPLICATION ================= -->
+
+    <div class="app" id="app">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    🎓
+                </div>
+
+                <div>
+                    <h2>Smart<span>Campus</span></h2>
+                    <small>Management System</small>
+                </div>
+
+            </div>
+
+
+            <div class="user-mini">
+
+                <div class="avatar">
+                    AS
+                </div>
+
+                <div>
+
+                    <strong id="sidebarName">
+                        Aryan Sharma
+                    </strong>
+
+                    <small id="sidebarRole">
+                        Student
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <p class="nav-title">
+                    MAIN MENU
+                </p>
+
+                <button
+                    class="nav-item active"
+                    onclick="showSection('dashboard', this)"
+                >
+                    <span>📊</span>
+                    Dashboard
+                </button>
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('attendance', this)"
+                >
+                    <span>📅</span>
+                    Attendance
+                </button>
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('assignments', this)"
+                >
+                    <span>📝</span>
+                    Assignments
+                </button>
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('timetable', this)"
+                >
+                    <span>🗓️</span>
+                    Timetable
+                </button>
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('notices', this)"
+                >
+                    <span>📢</span>
+                    Notices
+                </button>
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('results', this)"
+                >
+                    <span>📈</span>
+                    Results
+                </button>
+
+                <p class="nav-title">
+                    SERVICES
+                </p>
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('leave', this)"
+                >
+                    <span>📄</span>
+                    Leave Application
+                </button>
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('complaints', this)"
+                >
+                    <span>💬</span>
+                    Complaints
+                </button>
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('profile', this)"
+                >
+                    <span>👤</span>
+                    My Profile
+                </button>
+
+            </nav>
+
+
+            <button class="logout-btn" onclick="logout()">
+                🚪 Logout
+            </button>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+
+        <main class="main-content">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <button
+                    class="mobile-menu"
+                    onclick="toggleSidebar()"
+                >
+                    ☰
+                </button>
+
+                <div>
+
+                    <p class="date" id="currentDate"></p>
+
+                    <h2 id="pageTitle">
+                        Dashboard
+                    </h2>
+
+                </div>
+
+
+                <div class="top-actions">
+
+                    <button
+                        class="icon-btn"
+                        onclick="toggleDarkMode()"
+                        id="themeButton"
+                    >
+                        🌙
+                    </button>
+
+                    <button
+                        class="icon-btn notification-btn"
+                        onclick="showNotifications()"
+                    >
+                        🔔
+                        <span>3</span>
+                    </button>
+
+                    <div class="top-avatar">
+                        AS
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- ================= DASHBOARD ================= -->
+
+            <section
+                class="page-section active-section"
+                id="dashboard"
+            >
+
+                <div class="welcome-card">
+
+                    <div>
+
+                        <p>GOOD MORNING 👋</p>
+
+                        <h1>
+                            Welcome back, Aryan!
+                        </h1>
+
+                        <span>
+                            Here's what's happening with
+                            your campus activities today.
+                        </span>
+
+                    </div>
+
+                    <div class="welcome-icon">
+                        🎓
+                    </div>
+
+                </div>
+
+
+                <!-- STAT CARDS -->
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+                            📅
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Attendance
+                            </span>
+
+                            <h2>
+                                82%
+                            </h2>
+
+                            <small class="positive">
+                                ↑ 4.5% this month
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">
+                            📝
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Assignments
+                            </span>
+
+                            <h2>
+                                4
+                            </h2>
+
+                            <small>
+                                Pending
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+                            📢
+                        </div>
+
+                        <div>
+
+                            <span>
+                                New Notices
+                            </span>
+
+                            <h2>
+                                3
+                            </h2>
+
+                            <small>
+                                Unread
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon purple">
+                            ⭐
+                        </div>
+
+                        <div>
+
+                            <span>
+                                CGPA
+                            </span>
+
+                            <h2>
+                                8.4
+                            </h2>
+
+                            <small class="positive">
+                                Current Semester
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DASHBOARD GRID -->
+
+                <div class="dashboard-grid">
+
+                    <!-- ATTENDANCE SUMMARY -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+
+                                <h3>
+                                    Attendance Overview
+                                </h3>
+
+                                <p>
+                                    Current semester
+                                </p>
+
+                            </div>
+
+                            <button
+                                onclick="showSectionById('attendance')"
+                            >
+                                View All →
+                            </button>
+
+                        </div>
+
+                        <div class="attendance-overview">
+
+                            <div class="circle-progress">
+
+                                <div class="circle-inner">
+
+                                    <strong>
+                                        82%
+                                    </strong>
+
+                                    <span>
+                                        Overall
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="attendance-list">
+
+                                <div class="attendance-row">
+
+                                    <span>DSA</span>
+
+                                    <div class="progress">
+                                        <div
+                                            style="width:90%"
+                                        ></div>
+                                    </div>
+
+                                    <b>90%</b>
+
+                                </div>
+
+
+                                <div class="attendance-row">
+
+                                    <span>DBMS</span>
+
+                                    <div class="progress">
+                                        <div
+                                            style="width:85%"
+                                        ></div>
+                                    </div>
+
+                                    <b>85%</b>
+
+                                </div>
+
+
+                                <div class="attendance-row">
+
+                                    <span>OS</span>
+
+                                    <div class="progress">
+                                        <div
+                                            style="width:78%"
+                                        ></div>
+                                    </div>
+
+                                    <b>78%</b>
+
+                                </div>
+
+
+                                <div class="attendance-row">
+
+                                    <span>CN</span>
+
+                                    <div class="progress">
+                                        <div
+                                            style="width:75%"
+                                        ></div>
+                                    </div>
+
+                                    <b>75%</b>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- UPCOMING -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+
+                                <h3>
+                                    Upcoming
+                                </h3>
+
+                                <p>
+                                    Important events
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="event-list">
+
+                            <div class="event">
+
+                                <div class="event-date">
+                                    <strong>08</strong>
+                                    <span>OCT</span>
+                                </div>
+
+                                <div>
+                                    <h4>
+                                        DBMS Assignment
+                                    </h4>
+                                    <p>
+                                        Submission Deadline
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="event">
+
+                                <div class="event-date">
+                                    <strong>12</strong>
+                                    <span>OCT</span>
+                                </div>
+
+                                <div>
+                                    <h4>
+                                        Internal Examination
+                                    </h4>
+                                    <p>
+                                        Room No. 204
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="event">
+
+                                <div class="event-date">
+                                    <strong>18</strong>
+                                    <span>OCT</span>
+                                </div>
+
+                                <div>
+                                    <h4>
+                                        Project Review
+                                    </h4>
+                                    <p>
+                                        Seminar Hall
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RECENT NOTICES -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Recent Notices
+                            </h3>
+
+                            <p>
+                                Latest campus updates
+                            </p>
+
+                        </div>
+
+                        <button
+                            onclick="showSectionById('notices')"
+                        >
+                            View All →
+                        </button>
+
+                    </div>
+
+
+                    <div class="notice-list">
+
+                        <div class="notice">
+
+                            <div class="notice-icon">
+                                📢
+                            </div>
+
+                            <div>
+
+                                <h4>
+                                    Mid-Semester Examination Schedule
+                                </h4>
+
+                                <p>
+                                    Examination schedule has
+                                    been published.
+                                </p>
+
+                                <small>
+                                    2 hours ago
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="notice">
+
+                            <div class="notice-icon green-bg">
+                                🎉
+                            </div>
+
+                            <div>
+
+                                <h4>
+                                    Annual Sports Fest
+                                </h4>
+
+                                <p>
+                                    Registrations are now open.
+                                </p>
+
+                                <small>
+                                    Yesterday
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= ATTENDANCE ================= -->
+
+            <section
+                class="page-section"
+                id="attendance"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Attendance
+                        </h2>
+
+                        <p>
+                            Track your attendance subject-wise
+                        </p>
+
+                    </div>
+
+                    <div class="attendance-total">
+                        Overall: <strong>82%</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="table-card">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Subject</th>
+                                <th>Faculty</th>
+                                <th>Present</th>
+                                <th>Total</th>
+                                <th>Percentage</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Data Structures</td>
+                                <td>Dr. Sharma</td>
+                                <td>36</td>
+                                <td>40</td>
+                                <td>90%</td>
+                                <td>
+                                    <span class="badge success">
+                                        Good
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>DBMS</td>
+                                <td>Prof. Verma</td>
+                                <td>34</td>
+                                <td>40</td>
+                                <td>85%</td>
+                                <td>
+                                    <span class="badge success">
+                                        Good
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Operating Systems</td>
+                                <td>Dr. Singh</td>
+                                <td>31</td>
+                                <td>40</td>
+                                <td>78%</td>
+                                <td>
+                                    <span class="badge warning">
+                                        Average
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Computer Networks</td>
+                                <td>Prof. Gupta</td>
+                                <td>30</td>
+                                <td>40</td>
+                                <td>75%</td>
+                                <td>
+                                    <span class="badge warning">
+                                        Low
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Software Engineering</td>
+                                <td>Dr. Kumar</td>
+                                <td>34</td>
+                                <td>40</td>
+                                <td>85%</td>
+                                <td>
+                                    <span class="badge success">
+                                        Good
+                                    </span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= ASSIGNMENTS ================= -->
+
+            <section
+                class="page-section"
+                id="assignments"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Assignments
+                        </h2>
+
+                        <p>
+                            Manage your academic assignments
+                        </p>
+
+                    </div>
+
+                    <select
+                        class="filter-select"
+                        onchange="filterAssignments(this.value)"
+                    >
+
+                        <option value="all">
+                            All Assignments
+                        </option>
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+                        <option value="submitted">
+                            Submitted
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="assignment-grid" id="assignmentGrid">
+
+                    <div class="assignment-card" data-status="pending">
+
+                        <div class="assignment-top">
+
+                            <span class="subject-tag">
+                                DBMS
+                            </span>
+
+                            <span class="badge danger">
+                                Due Soon
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Database Normalization
+                        </h3>
+
+                        <p>
+                            Explain 1NF, 2NF, 3NF and BCNF
+                            with suitable examples.
+                        </p>
+
+                        <div class="assignment-bottom">
+
+                            <span>
+                                📅 Due: 08 Oct
+                            </span>
+
+                            <button
+                                onclick="submitAssignment(this)"
+                            >
+                                Submit
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="assignment-card" data-status="pending">
+
+                        <div class="assignment-top">
+
+                            <span class="subject-tag">
+                                OS
+                            </span>
+
+                            <span class="badge warning">
+                                Pending
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            CPU Scheduling
+                        </h3>
+
+                        <p>
+                            Compare FCFS, SJF and Round Robin
+                            scheduling algorithms.
+                        </p>
+
+                        <div class="assignment-bottom">
+
+                            <span>
+                                📅 Due: 12 Oct
+                            </span>
+
+                            <button
+                                onclick="submitAssignment(this)"
+                            >
+                                Submit
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="assignment-card" data-status="submitted">
+
+                        <div class="assignment-top">
+
+                            <span class="subject-tag">
+                                DSA
+                            </span>
+
+                            <span class="badge success">
+                                Submitted
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Binary Search Tree
+                        </h3>
+
+                        <p>
+                            Implement insertion and deletion
+                            operations in BST.
+                        </p>
+
+                        <div class="assignment-bottom">
+
+                            <span>
+                                ✓ Submitted
+                            </span>
+
+                            <button class="disabled-btn">
+                                Submitted
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= TIMETABLE ================= -->
+
+            <section
+                class="page-section"
+                id="timetable"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Class Timetable
+                        </h2>
+
+                        <p>
+                            B.Tech CSE — Semester VI
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-card timetable-table">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Time</th>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>09:00 - 10:00</td>
+                                <td>DSA</td>
+                                <td>DBMS</td>
+                                <td>OS</td>
+                                <td>CN</td>
+                                <td>SE</td>
+                            </tr>
+
+                            <tr>
+                                <td>10:00 - 11:00</td>
+                                <td>OS</td>
+                                <td>DSA</td>
+                                <td>DBMS</td>
+                                <td>SE</td>
+                                <td>CN</td>
+                            </tr>
+
+                            <tr>
+                                <td>11:00 - 12:00</td>
+                                <td>CN</td>
+                                <td>SE</td>
+                                <td>DSA</td>
+                                <td>DBMS</td>
+                                <td>OS</td>
+                            </tr>
+
+                            <tr class="break-row">
+                                <td>12:00 - 01:00</td>
+                                <td colspan="5">
+                                    ☕ LUNCH BREAK
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>01:00 - 02:00</td>
+                                <td>LAB</td>
+                                <td>LAB</td>
+                                <td>Library</td>
+                                <td>Project</td>
+                                <td>LAB</td>
+                            </tr>
+
+                            <tr>
+                                <td>02:00 - 03:00</td>
+                                <td>LAB</td>
+                                <td>LAB</td>
+                                <td>SE</td>
+                                <td>Project</td>
+                                <td>Sports</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= NOTICES ================= -->
+
+            <section
+                class="page-section"
+                id="notices"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Campus Notices
+                        </h2>
+
+                        <p>
+                            Stay updated with campus announcements
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="notices-full">
+
+                    <div class="notice-full-card">
+
+                        <div class="big-notice-icon">
+                            📢
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Examination
+                            </span>
+
+                            <h3>
+                                Mid-Semester Examination Schedule
+                            </h3>
+
+                            <p>
+                                The mid-semester examination schedule
+                                has been published. Students are advised
+                                to check their respective schedules.
+                            </p>
+
+                            <small>
+                                Posted: 02 October 2026
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="notice-full-card">
+
+                        <div class="big-notice-icon green">
+                            🎉
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Event
+                            </span>
+
+                            <h3>
+                                Annual Sports Fest 2026
+                            </h3>
+
+                            <p>
+                                Registration for the annual sports fest
+                                is now open. Students can register
+                                through the sports department.
+                            </p>
+
+                            <small>
+                                Posted: 01 October 2026
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="notice-full-card">
+
+                        <div class="big-notice-icon purple">
+                            📚
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Academic
+                            </span>
+
+                            <h3>
+                                Project Review Schedule
+                            </h3>
+
+                            <p>
+                                Final-year project reviews will begin
+                                from 18 October 2026.
+                            </p>
+
+                            <small>
+                                Posted: 28 September 2026
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= RESULTS ================= -->
+
+            <section
+                class="page-section"
+                id="results"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Academic Results
+                        </h2>
+
+                        <p>
+                            Semester performance
+                        </p>
+
+                    </div>
+
+                    <div class="cgpa-box">
+                        CGPA <strong>8.4</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="table-card">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Subject</th>
+                                <th>Internal</th>
+                                <th>External</th>
+                                <th>Total</th>
+                                <th>Grade</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Data Structures</td>
+                                <td>28</td>
+                                <td>63</td>
+                                <td>91</td>
+                                <td>
+                                    <span class="grade">
+                                        O
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>DBMS</td>
+                                <td>25</td>
+                                <td>57</td>
+                                <td>82</td>
+                                <td>
+                                    <span class="grade">
+                                        A
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Operating Systems</td>
+                                <td>24</td>
+                                <td>52</td>
+                                <td>76</td>
+                                <td>
+                                    <span class="grade">
+                                        B+
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Computer Networks</td>
+                                <td>27</td>
+                                <td>61</td>
+                                <td>88</td>
+                                <td>
+                                    <span class="grade">
+                                        A+
+                                    </span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= LEAVE ================= -->
+
+            <section
+                class="page-section"
+                id="leave"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Leave Application
+                        </h2>
+
+                        <p>
+                            Apply for academic leave
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-card">
+
+                    <form id="leaveForm">
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label>
+                                    From Date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="fromDate"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>
+                                    To Date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="toDate"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Reason
+                            </label>
+
+                            <select required>
+
+                                <option value="">
+                                    Select reason
+                                </option>
+
+                                <option>
+                                    Medical
+                                </option>
+
+                                <option>
+                                    Personal
+                                </option>
+
+                                <option>
+                                    Family Function
+                                </option>
+
+                                <option>
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Description
+                            </label>
+
+                            <textarea
+                                placeholder="Explain your reason..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            class="primary-btn"
+                            type="submit"
+                        >
+                            Submit Application
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Previous Applications
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div id="leaveList">
+
+                        <div class="leave-row">
+
+                            <div>
+                                <strong>
+                                    20 Sep - 22 Sep
+                                </strong>
+
+                                <p>
+                                    Personal
+                                </p>
+                            </div>
+
+                            <span class="badge success">
+                                Approved
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= COMPLAINTS ================= -->
+
+            <section
+                class="page-section"
+                id="complaints"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Complaints & Feedback
+                        </h2>
+
+                        <p>
+                            Report campus issues
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-card">
+
+                    <form id="complaintForm">
+
+                        <div class="form-group">
+
+                            <label>
+                                Complaint Category
+                            </label>
+
+                            <select id="complaintCategory" required>
+
+                                <option value="">
+                                    Select category
+                                </option>
+
+                                <option>
+                                    Infrastructure
+                                </option>
+
+                                <option>
+                                    Library
+                                </option>
+
+                                <option>
+                                    Hostel
+                                </option>
+
+                                <option>
+                                    Internet
+                                </option>
+
+                                <option>
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Description
+                            </label>
+
+                            <textarea
+                                id="complaintDescription"
+                                placeholder="Describe your complaint..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="primary-btn"
+                        >
+                            Submit Complaint
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h3>
+                            My Complaints
+                        </h3>
+
+                    </div>
+
+                    <div id="complaintList">
+
+                        <div class="complaint-row">
+
+                            <div>
+
+                                <strong>
+                                    #CMP102
+                                </strong>
+
+                                <p>
+                                    Internet connectivity issue
+                                </p>
+
+                            </div>
+
+                            <span class="badge warning">
+                                In Progress
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= PROFILE ================= -->
+
+            <section
+                class="page-section"
+                id="profile"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            My Profile
+                        </h2>
+
+                        <p>
+                            Manage your personal information
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-card">
+
+                    <div class="profile-header">
+
+                        <div class="large-avatar">
+                            AS
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Aryan Sharma
+                            </h2>
+
+                            <p>
+                                B.Tech Computer Science
+                            </p>
+
+                            <span>
+                                Student ID: STU2026001
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-details">
+
+                        <div>
+                            <label>Email</label>
+                            <strong>
+                                Student@campus.com
+                            </strong>
+                        </div>
+
+                        <div>
+                            <label>Phone</label>
+                            <strong>
+                                +91 98*****210
+                            </strong>
+                        </div>
+
+                        <div>
+                            <label>Department</label>
+                            <strong>
+                                Computer Science
+                            </strong>
+                        </div>
+
+                        <div>
+                            <label>Semester</label>
+                            <strong>
+                                VII
+                            </strong>
+                        </div>
+
+                        <div>
+                            <label>Roll Number</label>
+                            <strong>
+                                2026CSE001
+                            </strong>
+                        </div>
+
+                        <div>
+                            <label>College</label>
+                            <strong>
+                                ABC Institute of Technology
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- TOAST -->
+
+    <div
+        class="toast"
+        id="toast"
+    >
+        <span id="toastMessage">
+            Success!
+        </span>
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
